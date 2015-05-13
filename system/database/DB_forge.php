@@ -110,6 +110,15 @@ abstract class CI_DB_forge {
 	 * @var	string
 	 */
 	protected $_create_table_if	= 'CREATE TABLE IF NOT EXISTS';
+        
+        
+         /**
+	 * ALTER TABLE CONSTRAINT
+	 *
+	 * @var	string
+	 */        
+    protected $_add_foreign_key	= 'ALTER TABLE %s ADD CONSTRAINT %s FOREIGN KEY (%s) REFERENCES %s (%s) ON DELETE %s ON UPDATE %s';
+        
 
 	/**
 	 * CREATE TABLE keys flag
@@ -259,6 +268,47 @@ abstract class CI_DB_forge {
 		}
 
 		return $this;
+	}
+        
+        //---------------------------------------------------
+        
+         /**
+         * Add foreign key
+         * @param string $target
+         * @param string $targets_column
+         * @param string $ref_table
+         * @param string $ref_column
+         * @param string $on_delete
+         * @param string $on_update
+         * @param string $cons_name
+         * @return boolean
+         */
+        public function add_key_foreign($target, $targets_column,$ref_table,$ref_column, $on_delete = 'NO ACTION',$on_update = 'NO ACTION',$cons_name = 'FK')
+	{
+            if ($target === '' OR $targets_column === '' OR $ref_table === '' OR $ref_column === '')
+		{
+			show_error('Target, Reference table & target, reference column name is required for that operation.');
+			return FALSE;
+		}
+                if($cons_name == 'FK'){
+                    $cons_name = 'FK_'.$target.'_'.$ref_table;
+                }
+                
+		$result = $this->db->query(sprintf($this->_add_foreign_key,
+						$this->db->escape_identifiers($this->db->dbprefix.$target),
+						$this->db->escape_identifiers($cons_name),
+                        
+                                                $this->db->escape_identifiers($targets_column),
+                        
+                                                $this->db->escape_identifiers($this->db->dbprefix.$ref_table),
+                        
+                                                $this->db->escape_identifiers($ref_column),
+                        
+                                                trim($on_delete),
+                        
+                                                trim($on_update))
+					);
+                return $result;
 	}
 
 	// --------------------------------------------------------------------
