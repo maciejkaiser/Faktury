@@ -13,5 +13,9 @@
 
           <?php echo $content; ?>
 
+          <?php if(($this->session->userdata('user_name')!="")): ?>
+            <a href="<?php echo base_url();?>user/logout">Sign out</a>
+          <?php endif; ?>
+
         </div>
     </div>
