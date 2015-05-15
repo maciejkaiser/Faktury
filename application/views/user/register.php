@@ -7,6 +7,9 @@
    		</div>
 
    		<div class="well">Registration</div>
+          <?php if (isset($message) && !empty($message)): ?>
+            <div class="alert alert-info"><?php echo $message;?></div>
+         <?php endif;?>
    		<?php echo form_open("user/registerUser", array('class' =>'form-horizontal well')); ?>
    		<div class="form-group">
    			<label class="col-sm-2 control-label">Username</label>

@@ -18,19 +18,21 @@ class User extends CI_Controller
 		}
 	}
 
-	public function register(){
+	public function register($msg = ""){
 		$title = "Register";
-		$data = array('title' => $title, 'content' => "Hello User");
+		$data = array('title' => $title, 'content' => "Hello User", 'message' => $msg);
 		$data['content'] = $this->load->view('user/register', $data, true);
 		$this->load->view('layout', $data);
 	}
 
-	public function login(){
+	public function login($msg = ""){
 
 		$title = "Login";
-		$data = array('title' => $title, 'content' => "Hello User");
+		$data = array('title' => $title, 'content' => "Hello User", 'message' => $msg);
 		$data['content'] = $this->load->view('user/login', $data, true);
 		$this->load->view('layout', $data);
+
+
 	}
 
 	public function logout()
@@ -50,7 +52,7 @@ class User extends CI_Controller
 		$this->load->model('usermodel');
 		$name = $this->input->post('user_name');
 		$password = md5($this->input->post('user_password'));
-
+		
 		$result  = $this->usermodel->login($name,$password);
 		if($result)
 		{
@@ -58,7 +60,8 @@ class User extends CI_Controller
 		}
 		else
 		{
-			redirect('/user/login', 'refresh');
+			$msg = "Invalid username or password";
+			$this->login($msg);
 		}        
 	}
 
@@ -68,16 +71,30 @@ class User extends CI_Controller
 
 		$this->form_validation->set_rules('user_name', 'Name', 'trim|required|min_length[4]|xss_clean');
 		$this->form_validation->set_rules('user_password', 'Pass', 'trim|required|min_length[4]|max_length[32]');
+		$this->form_validation->set_message('required', 'Sorry %s is not correct.');
 
 		if($this->form_validation->run() == FALSE)
 		{
-			redirect('/user/', 'refresh');
+			$msg = "Invalid username or password!";
+			$this->register($msg);
 		}
 		else
 		{
 			$this->load->model('usermodel');
-			$this->usermodel->add_user();
-			redirect('/user/', 'refresh');
+			 $data=array(
+	            'user_name'=> $this->input->post('user_name'),
+	            'user_password'=> md5($this->input->post('user_password'))
+            );
+
+			$result = $this->usermodel->register($data);
+
+			if($result){
+				$msg = "Registration succesfull!";
+				$this->login($msg);
+			}else{
+				$msg = "User already exist!";
+				$this->register($msg);
+			}
 		}
 	}
 
