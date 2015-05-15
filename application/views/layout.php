@@ -9,5 +9,12 @@
 <div class="container">
 	<?php echo $content; ?>
 </div>
+
+<hr>
+<div class="container">
+	<div class="row text-center">
+		<div class="col-md-6 col-md-offset-3">Copyright &copy; <?php echo date("Y"); ?> by <a href="http://maciejkaiser.com">Maciej Kaiser</a></div>
+	</div>
+</div>
 </body>
 </html>

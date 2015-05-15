@@ -6,6 +6,11 @@
                 <h4><?php echo $title; ?></h4>
             </div>
 
+            <div class="well">
+              <a href="<?php echo base_url()?>invoice">All invoices</a> /
+              <a href="<?php echo base_url()?>invoice/add">Ad invoice</a>
+            </div>
+
         </div>
 
 
