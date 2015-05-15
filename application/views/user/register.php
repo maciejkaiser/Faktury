@@ -30,7 +30,7 @@
    			</div>
    			<div class="col-sm-2 col-md-5"></div>
    			<div class="col-sm-10 col-md-3">
-   				<a href="<?php base_url();?>home" class="btn btn-danger btn-block" ><span class="glyphicon glyphicon-remove"></span> Cancel</a>
+   				<a href="<?php echo base_url();?>home/index" class="btn btn-danger btn-block" ><span class="glyphicon glyphicon-remove"></span> Cancel</a>
    			</div>
    		</div>
    		<a href="<?php echo base_url();?>user/login">Have account already?</a>
