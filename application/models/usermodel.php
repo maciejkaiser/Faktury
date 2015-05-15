@@ -46,6 +46,10 @@ class Usermodel extends CI_Model
         return $this->add_user($data);
     }
 
+    function delete(){
+        return $this->delete_user($this->session->userdata('user_id'));
+    }
+
     private function checkIfUserExists($username, $password){
         if($username != "" && $password != "" ){
             $this->db->where("user_name",$username);
@@ -68,6 +72,21 @@ class Usermodel extends CI_Model
         $result = $this->checkIfUserExists($data['user_name'], $data['user_password']);
         if($result === false){
             $this->db->insert('user',$data);
+            return true;
+        }else{
+            return false;
+        }
+        
+       }
+    }
+
+    private function delete_user($user_id)
+    {
+       if($user_id){
+        $this->db->where('user_id', $user_id);
+        $result = $this->db->delete('user'); 
+
+        if($result){
             return true;
         }else{
             return false;

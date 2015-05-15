@@ -69,8 +69,9 @@ class User extends CI_Controller
 		$this->load->library('form_validation');
 
 		$this->form_validation->set_rules('user_name', 'Name', 'trim|required|min_length[4]|xss_clean');
-		$this->form_validation->set_rules('user_password', 'Pass', 'trim|required|min_length[4]|max_length[32]');
-		$this->form_validation->set_message('required', 'Sorry %s is not correct.');
+		$this->form_validation->set_rules('user_password', 'Pass', 'trim|required|matches[user_password_confirm]');
+		$this->form_validation->set_rules('user_password_confirm', 'Confirm Pass', 'trim|required|min_length[4]|max_length[32]');
+
 
 		if($this->form_validation->run() == FALSE)
 		{
@@ -94,6 +95,30 @@ class User extends CI_Controller
 				$msg = "User already exist!";
 				$this->register($msg);
 			}
+		}
+	}
+
+	public function delete(){
+		if(($this->session->userdata('user_name')!=""))
+		{
+			$title = "Delete user ".$this->session->userdata('user_name');
+			$data = array('title' => $title, 'content' => "Are you sure to delete an account?");
+			$data['content'] = $this->load->view('user/delete', $data, true);
+			$this->load->view('layout', $data);
+		}else{
+			$this->login();
+		}
+	}
+
+	public function deleteConfirm($user_id = 0){
+		if(($this->session->userdata('user_name')!=""))
+		{
+			$this->load->model('usermodel');
+			$this->usermodel->delete((int)$user_id);
+			$this->logout();
+			
+		}else{
+			$this->login();
 		}
 	}
 
