@@ -14,7 +14,7 @@ class Invoice extends CI_Controller
 			$result = $this->invoicemodel->getUserInvoices($this->session->userdata('user_id'));
 			// $result  = null;
 			$result == null ? $result = "You haven't any invoices" : $result = $result;
-			$data = array('title' => $title, 'content' => "Many many many of them :)", 'invoices' => $result);
+			$data = array('title' => $title, 'invoices' => $result);
 			$data['content'] = $this->load->view('invoice/index', $data, true);
 			$this->load->view('layout', $data);
 		}else{

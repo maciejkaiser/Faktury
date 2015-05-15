@@ -10,11 +10,6 @@
 
     <div class="col-xs-12 col-sm-12 col-md-12">
 
-      <?php echo $content; ?> 
-      <hr>
-
-
-
       <?php if(!is_array($invoices)): ?>
         <small><?php echo $invoices; ?></small>
       <?php else : ?>
@@ -40,8 +35,6 @@
         </table>
 
       <?php endif;?>
-
-      <a href="<?php echo base_url();?>user">Back</a>
-
+    
     </div>
   </div>
