@@ -7,10 +7,14 @@ class Home extends CI_Controller
 {
 	
 	public function index(){
-		$title = "Home";
-		$data = array('title' => $title, 'content' => "Home sweet home");
-		$data['content'] = $this->load->view('home/index', $data, true);
-		$this->load->view('layout', $data);
+		if(($this->session->userdata('user_name'))){
+			redirect('user', 'refresh');
+		}else{
+			$title = "Home";
+			$data = array('title' => $title, 'content' => "Home sweet home");
+			$data['content'] = $this->load->view('home/index', $data, true);
+			$this->load->view('layout', $data);
+		}
 	}
 }
 ?>
