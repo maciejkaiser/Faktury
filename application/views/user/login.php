@@ -3,10 +3,9 @@
    	<div class="col-xs-12 col-sm-12 col-md-8 col-md-offset-2">
 
    		<div class="page-header">
-   			<h4><?php echo $title; ?></h4>
+   			<h1><?php echo $title; ?></h1>
    		</div>
-
-   		<div class="well">Login form here</div>
+         
          <?php if (isset($message) && !empty($message)): ?>
             <div class="alert alert-info"><?php echo $message;?></div>
          <?php endif;?>
@@ -33,7 +32,7 @@
    				<a href="<?php echo base_url();?>/home/index" class="btn btn-danger btn-block" ><span class="glyphicon glyphicon-remove"></span> Cancel</a>
    			</div>
    		</div>
-   		<a href="<?php echo base_url();?>user/register">Have no account yet?</a>
+   		<a href="<?php echo base_url();?>user/register">Don't have an account yet?</a>
    		<?php echo form_close(); ?>
 
    	</div>
