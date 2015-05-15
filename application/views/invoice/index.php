@@ -14,7 +14,7 @@
         <small><?php echo $invoices; ?></small>
       <?php else : ?>
         <?php //print_r($invoices); ?>
-        <table class="table">
+        <table class="table table-striped">
         <tr>
             <th>NR</th>
             <th>Title</th>

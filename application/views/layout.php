@@ -9,7 +9,7 @@
 <body>
 
 	<?php if(($this->session->userdata('user_name')!="")): ?>
-		<nav class="navbar navbar-invert navbar-collapse">
+		<nav class="navbar navbar-inverse navbar-collapse">
 		<div class="navbar-inner">
 			<div class="container">
 					<div class="navbar-header">
