@@ -32,7 +32,6 @@ class User extends CI_Controller
 		$data['content'] = $this->load->view('user/login', $data, true);
 		$this->load->view('layout', $data);
 
-
 	}
 
 	public function logout()
@@ -95,6 +94,29 @@ class User extends CI_Controller
 				$msg = "User already exist!";
 				$this->register($msg);
 			}
+		}
+	}
+
+	public function actions(){
+		if(($this->session->userdata('user_name')!=""))
+		{
+			$title = "Actions : ".$this->session->userdata('user_name');
+			$data = array('title' => $title);
+			$data['content'] = $this->load->view('user/actions', $data, true);
+			$this->load->view('layout', $data);
+		}else{
+			$this->login();
+		}
+	}
+	public function settings(){
+		if(($this->session->userdata('user_name')!=""))
+		{
+			$title = "Settings : ".$this->session->userdata('user_name');
+			$data = array('title' => $title);
+			$data['content'] = $this->load->view('user/settings', $data, true);
+			$this->load->view('layout', $data);
+		}else{
+			$this->login();
 		}
 	}
 
