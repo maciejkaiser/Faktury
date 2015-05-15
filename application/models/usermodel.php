@@ -21,21 +21,25 @@ class Usermodel extends CI_Model
         // $query=$this->db->get("user");
 
         // if($query->num_rows()>0)
-        // {
-        $result = $this->checkIfUserExists($name, $password);
-        if($result){
-            foreach($result->result() as $rows)
-            {
-                $newdata = array(
-                    'user_id'  => $rows->user_id,
-                    'user_name'  => $rows->user_name,
-                    'logged_in'  => TRUE,
-                    );
+        // 
+
+        if($name != "" && $password != ""){
+            $result = $this->checkIfUserExists($name, $password);
+            if($result){
+                foreach($result->result() as $rows)
+                {
+                    $newdata = array(
+                        'user_id'  => $rows->user_id,
+                        'user_name'  => $rows->user_name,
+                        'logged_in'  => TRUE,
+                        );
+                }
+                $this->session->set_userdata($newdata);
+                return true;
             }
-            $this->session->set_userdata($newdata);
-            return true;
+            return false;
         }
-        return false;
+        
     }
 
     function register($data){
