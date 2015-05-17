@@ -23,8 +23,20 @@
 					</div>
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
-							<li><a href="<?php echo base_url()?>invoice">Show invoices</a></li>
-							<li><a href="<?php echo base_url()?>invoice/add">Add invoice</a></li>
+							<li class="dropdown">
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Invoice <span class="caret"></span></span></a>
+					          <ul class="dropdown-menu" role="menu">
+					           <li><a href="<?php echo base_url()?>invoice/index">Show</a></li>
+					            <li><a href="<?php echo base_url()?>invoice/add">Add</a></li>
+					          </ul>
+					        </li>
+							<li class="dropdown">
+					          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Firm <span class="caret"></span></span></a>
+					          <ul class="dropdown-menu" role="menu">
+					           <li><a href="<?php echo base_url()?>firm/index">Show</a></li>
+					            <li><a href="<?php echo base_url()?>firm/add">Add</a></li>
+					          </ul>
+					        </li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
 				        
