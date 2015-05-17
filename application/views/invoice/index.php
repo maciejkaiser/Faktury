@@ -21,6 +21,7 @@
             <th>Cost</th>
             <th>Firm</th>
             <th>Status</th>
+            <th>Options</th>
           </tr>
           <?php foreach ($invoices as $key => $value) : ?>
             <tr>
@@ -29,6 +30,14 @@
               <td><?php echo $value->invoice_cost; ?></td>
               <td><?php echo $value->firm_name; ?></td>
               <td><?php echo $value->invoice_status != 0 ? "Payed" : "Not payed"; ?></td>
+              <td>
+                <?php if($value->invoice_status != 1): ?>
+                <a href="<?php echo base_url()?>invoice/pay/<?php echo $value->invoice_id;?>">Pay</a> /
+                <?php endif; ?>
+                <a href="<?php echo base_url()?>invoice/show/<?php echo $value->invoice_id;?>">Show</a> /
+                <a href="<?php echo base_url()?>invoice/edit/<?php echo $value->invoice_id;?>">Edit</a> /
+                <a href="<?php echo base_url()?>invoice/delete/<?php echo $value->invoice_id;?>">Delete</a>
+              </td>
             </tr>
             
           <?php endforeach;?>
