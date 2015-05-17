@@ -13,6 +13,31 @@ class Invoicemodel extends CI_Model
     /**
     * getUserInvoices
     */
+    function countInvoices($user_id)
+    {
+
+        $this->db->select('invoice_id');
+        $this->db->from('invoice');
+
+        $this->db->where("invoice_user",$user_id);
+
+        $this->db->count_all();
+
+        $query = $this->db->get();
+
+        if($query->num_rows()>0)
+        {
+           return $query->result();
+        }else{
+            return false;
+        }
+        
+    }
+
+
+    /**
+    * getUserInvoices
+    */
     function getUserInvoices($user_id)
     {
 
