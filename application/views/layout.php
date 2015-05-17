@@ -47,12 +47,11 @@
 		<?php echo $content; ?>
 	</div>
 
-	<hr>
-	<div class="container">
-		<div class="row text-center">
-			<div class="col-md-6 col-md-offset-3">Copyright &copy; <?php echo date("Y"); ?> by <a href="http://maciejkaiser.com">Maciej Kaiser</a></div>
-		</div>
-	</div>
+	<footer class="footer">
+      <div class="container">
+        <p class="text-muted">Copyright &copy; <?php echo date("Y"); ?> by <a href="http://maciejkaiser.com" target="_blank">Maciej Kaiser</a></p>
+      </div>
+    </footer>
 
 	<script src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
 	<script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
