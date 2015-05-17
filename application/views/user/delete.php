@@ -10,7 +10,7 @@
 
       <div class="well"><?php echo $content; ?></div>
       <a href="<?php echo base_url()?>user/settings" class="btn btn-danger">No, wait! I changed my mind</a>
-      <a href="<?php echo base_url()?>user/deleteConfirm" class="btn btn-success">DELETE</a>
+      <a href="<?php echo base_url()?>user/deleteConfirm/<?php echo base_url()?>" class="btn btn-success">DELETE</a>
 
     </div>
 

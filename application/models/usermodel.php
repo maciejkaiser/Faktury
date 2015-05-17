@@ -6,22 +6,11 @@ class Usermodel extends CI_Model
     {
         parent::__construct();
     }
-    
-    function get_last_ten_entries()
-    {
-        $query = $this->db->get('user', 10);
-        return $query->result();
-    }
-
+    /**
+    * login
+    */
     function login($name,$password)
     {
-        // $this->db->where("user_name",$name);
-        // $this->db->where("user_password",$password);
-
-        // $query=$this->db->get("user");
-
-        // if($query->num_rows()>0)
-        // 
 
         if($name != "" && $password != ""){
             $result = $this->checkIfUserExists($name, $password);
@@ -42,14 +31,21 @@ class Usermodel extends CI_Model
         
     }
 
+    /**
+    * register
+    */
     function register($data){
         return $this->add_user($data);
     }
-
+    /**
+    * delete
+    */
     function delete(){
         return $this->delete_user($this->session->userdata('user_id'));
     }
-
+    /**
+    * checkIfUserExists
+    */
     private function checkIfUserExists($username, $password){
         if($username != "" && $password != "" ){
             $this->db->where("user_name",$username);
@@ -65,7 +61,9 @@ class Usermodel extends CI_Model
             return "Username or Password is null";
         }
     }
-
+    /**
+    * add_user
+    */
     private function add_user($data)
     {
        if(!empty($data) && is_array($data)){
@@ -79,7 +77,9 @@ class Usermodel extends CI_Model
         
        }
     }
-
+    /**
+    * delete_user
+    */
     private function delete_user($user_id)
     {
        if($user_id){

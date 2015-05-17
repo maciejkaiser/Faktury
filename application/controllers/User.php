@@ -6,6 +6,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class User extends CI_Controller
 {
 	
+	/**
+	* index
+	*/
 	public function index(){
 		if(($this->session->userdata('user_name')!=""))
 		{
@@ -17,14 +20,18 @@ class User extends CI_Controller
 			$this->login();
 		}
 	}
-
+	/**
+	* register
+	*/
 	public function register($msg = ""){
 		$title = "Register";
 		$data = array('title' => $title, 'content' => "Hello User", 'message' => $msg);
 		$data['content'] = $this->load->view('user/register', $data, true);
 		$this->load->view('layout', $data);
 	}
-
+	/**
+	* login
+	*/
 	public function login($msg = ""){
 
 		$title = "Login";
@@ -33,7 +40,9 @@ class User extends CI_Controller
 		$this->load->view('layout', $data);
 
 	}
-
+	/**
+	* logout
+	*/
 	public function logout()
 	{
 		$newdata = array(
@@ -43,9 +52,11 @@ class User extends CI_Controller
 			);
 		$this->session->unset_userdata($newdata);
 		$this->session->sess_destroy();
-		redirect('/user/', 'refresh');
+		redirect('/home/', 'refresh');
 	}
-
+	/**
+	* loginUser
+	*/
 	public function loginUser()
 	{
 		$this->load->model('usermodel');
@@ -63,7 +74,9 @@ class User extends CI_Controller
 			$this->login($msg);
 		}        
 	}
-
+	/**
+	* registerUser
+	*/
 	public function registerUser()
 	{
 		$this->load->library('form_validation');
@@ -97,7 +110,9 @@ class User extends CI_Controller
 			}
 		}
 	}
-
+	/**
+	* delete
+	*/
 	public function delete(){
 		if(($this->session->userdata('user_name')!=""))
 		{
@@ -109,7 +124,9 @@ class User extends CI_Controller
 			$this->login();
 		}
 	}
-
+	/**
+	* deleteConfirm
+	*/
 	public function deleteConfirm($user_id = 0){
 		if(($this->session->userdata('user_name')!=""))
 		{
@@ -121,7 +138,9 @@ class User extends CI_Controller
 			$this->login();
 		}
 	}
-
+	/**
+	* actions
+	*/
 	public function actions(){
 		if(($this->session->userdata('user_name')!=""))
 		{
@@ -133,6 +152,9 @@ class User extends CI_Controller
 			$this->login();
 		}
 	}
+	/**
+	* settings
+	*/
 	public function settings(){
 		if(($this->session->userdata('user_name')!=""))
 		{
