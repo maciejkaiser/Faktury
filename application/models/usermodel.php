@@ -6,6 +6,7 @@ class Usermodel extends CI_Model
     {
         parent::__construct();
     }
+
     /**
     * login
     */

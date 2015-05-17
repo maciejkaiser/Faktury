@@ -12,8 +12,18 @@ class User extends CI_Controller
 	public function index(){
 		if(($this->session->userdata('user_name')!=""))
 		{
+			$this->load->model('invoicemodel');
+			$q = $this->invoicemodel->countInvoices($this->session->userdata('user_id'));
+
 			$title = "User ".$this->session->userdata('user_name');
 			$data = array('title' => $title, 'content' => "Hello User");
+
+			if($q){
+				$data['count'] = count($q);
+			}else{
+				$data['count'] = 0;
+			}
+			
 			$data['content'] = $this->load->view('user/index', $data, true);
 			$this->load->view('layout', $data);
 		}else{
